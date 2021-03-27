@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5</title>
+    <style>
+        body{
+            position: relative;
+            overflow: hidden;
+        }
+        .div{
+            background-color: red;
+            border: 1px solid red;
+            border-radius: 50%;
+            height: 10vw;
+            width: 10vw;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="div1" class="div"></div>
+    <script>
+        let isDrag = false;
+        let  offSetX, offsetY;
+
+        let div1 = document.getElementById('div1');
+        div1.addEventListener('mousedown', function(e){
+            isDrag = true;
+            offSetX = e.pageX - parseInt(getComputedStyle(div1).left);
+            offSetY = e.pageY - parseInt(getComputedStyle(div1).top);
+        });
+
+        document.addEventListener('mouseup', function(){ isDrag = false});
+        document.addEventListener('mousemove',
+        function(e){
+            if(isDrag){
+                div1.style.left = `calc(${e.pageX}px - ${offSetX}px)`;
+                div1.style.top = `calc(${e.pageY}px - ${offSetY}px)`;
+            }
+        }
+        );
+
+    </script>
+</body>
+</html>
